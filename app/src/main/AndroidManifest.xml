@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="oak.shef.ac.uk.testrunningservicesbackgroundrelaunched">
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+
 
     <application
         android:allowBackup="true"
@@ -15,17 +18,32 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <service
-            android:name="oak.shef.ac.uk.testrunningservicesbackgroundrelaunched.SensorService"
-            android:enabled="true" >
-        </service>
+            android:name=".SensorService"
+            android:enabled="true" />
 
         <receiver
-            android:name="oak.shef.ac.uk.testrunningservicesbackgroundrelaunched.SensorRestarterBroadcastReceiver"
+            android:name=".SensorRestarterBroadcastReceiver"
             android:enabled="true"
             android:exported="true"
-            android:label="RestartServiceWhenStopped">
-        </receiver>
+            android:label="RestartServiceWhenStopped" />
+
+        <service
+            android:name=".MyTestIntentService"
+            android:exported="false" />
+
+      <!--  <receiver
+            android:name=".MyTestReceiver"
+            android:enabled="true"
+            android:process=":remote"
+            android:exported="true"></receiver> -->
+
+        <receiver
+            android:name=".MyTestReceiver"
+            android:enabled="true"
+            android:process=":remote"
+            android:exported="true"></receiver>
     </application>
 
 </manifest>
